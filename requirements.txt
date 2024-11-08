@@ -1,0 +1,7 @@
+Django>=5.0
+djangorestframework>=3.12.4
+django-cors-headers>=3.10.0
+django-cors-headers
+channels
+redis
+daphne
