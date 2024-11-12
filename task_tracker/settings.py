@@ -108,16 +108,48 @@ CORS_ALLOW_ALL_ORIGINS = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+        'debug': {
+            'format': '{levelname} {asctime} {module} {message} {exc_info}',
+            'style': '{',
+        },
+    },
     'handlers': {
         'console': {
-            'level': 'DEBUG',
+            'level': 'DEBUG',  # Log all levels DEBUG and above
             'class': 'logging.StreamHandler',
+            'formatter': 'debug',  # Using the debug formatter to show detailed information
+        },
+        'file': {
+            'level': 'ERROR',  # Only log errors and above to file
+            'class': 'logging.FileHandler',
+            'filename': 'django_errors.log',  # Log file to capture errors
+            'formatter': 'verbose',
         },
     },
     'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',  # Capture all Django logs with level DEBUG and above
+            'propagate': True,
+        },
         'django.db.backends': {
-            'level': 'DEBUG',
             'handlers': ['console'],
+            'level': 'DEBUG',  # Log SQL queries to console
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['console', 'file'],
+            'level': 'ERROR',  # Only capture errors related to requests
+            'propagate': False,
         },
     },
 }
