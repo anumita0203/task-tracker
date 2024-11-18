@@ -5,13 +5,8 @@ db.sqlite3-journal
 .env
 __pycache__/
 /.vscode/
-
-# npm
 node_modules/
 npm-debug.log
-
-# Webpack
 /frontend/node_modules/*
-
-# General
 /.venv/
+.env

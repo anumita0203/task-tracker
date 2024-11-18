@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from .models import Task
 from .serializers import TaskSerializer
+from .elasticsearch_logger import log_to_elasticsearch
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
@@ -25,6 +26,13 @@ class TaskViewSet(viewsets.ModelViewSet):
         # return super().create(request, *args, **kwargs)
         if serializer.is_valid():
             self.perform_create(serializer)
+            task_data = serializer.data
+            log_to_elasticsearch(
+                action="create",
+                task_id=task_data.get("id"),
+                user=request.user.username,
+                details=f"Task created with title: {task_data.get('title')}"
+            )
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
