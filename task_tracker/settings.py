@@ -19,8 +19,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'tasks',
     'tags',
-    'corsheaders',
-    'channels',
+    'journals'
+    # 'corsheaders',
 ]
 
 MIDDLEWARE = [

@@ -1,14 +1,7 @@
-from decouple import config
-from elasticsearch import Elasticsearch
+from task_tracker.elasticsearch_client import get_es_client
 from datetime import datetime
 
-elastic_password = config("ELASTIC_PASSWORD")
-
-es = Elasticsearch(
-    "https://localhost:9200",
-    http_auth=("elastic", elastic_password),
-    verify_certs=False
-)
+es = get_es_client()
 
 def log_to_elasticsearch(action, task_id, user, details):
     log_entry = {

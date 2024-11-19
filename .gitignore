@@ -10,3 +10,4 @@ npm-debug.log
 /frontend/node_modules/*
 /.venv/
 .env
+django_errors.log
