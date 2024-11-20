@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import JournalEntry
 from .elasticsearch_helper import index_journal_entry, search_journal_entries
-from .openai_helper import generate_search_query, generate_answer
+from .chatbot import generate_search_query, generate_answer
 
 class JournalEntryView(APIView):
     def post(self, request):

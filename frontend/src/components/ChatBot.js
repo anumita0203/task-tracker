@@ -8,7 +8,7 @@ const ChatBot = ({ apiUrl }) => {
     const handleAsk = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(apiUrl, { question });
+            const response = await axios.post(`http://127.0.0.1:8000/api/journal/chat/`, { question });
             setAnswer(response.data.answer);
         } catch (error) {
             console.error("Error fetching answer:", error);

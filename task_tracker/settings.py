@@ -138,12 +138,12 @@ LOGGING = {
     'loggers': {
         'django': {
             'handlers': ['console', 'file'],
-            'level': 'DEBUG',  # Capture all Django logs with level DEBUG and above
+            'level': 'ERROR',  # Capture all Django logs with level DEBUG and above
             'propagate': True,
         },
         'django.db.backends': {
             'handlers': ['console'],
-            'level': 'DEBUG',  # Log SQL queries to console
+            'level': 'ERROR',  # Log SQL queries to console
             'propagate': False,
         },
         'django.request': {

@@ -7,7 +7,7 @@ const JournalEntry = ({ apiUrl }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(apiUrl+"journals/", { text });
+            await axios.post(apiUrl+"journal/", { text });
             setText("");
             alert("Journal entry saved!");
         } catch (error) {
